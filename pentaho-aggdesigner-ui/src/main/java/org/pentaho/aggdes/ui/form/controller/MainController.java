@@ -20,14 +20,13 @@ package org.pentaho.aggdes.ui.form.controller;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.Date;
-import java.util.Properties;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 
@@ -42,7 +41,6 @@ import org.pentaho.aggdes.ui.form.model.ConnectionModel;
 import org.pentaho.aggdes.ui.model.AggList;
 import org.pentaho.aggdes.ui.util.Messages;
 import org.pentaho.aggdes.ui.util.SerializationService;
-import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.ui.xul.XulException;
 import org.pentaho.ui.xul.XulRunner;
 import org.pentaho.ui.xul.binding.Binding;
@@ -390,8 +388,7 @@ public class MainController extends AbstractXulEventHandler {
     String line;
     try {
       BufferedReader reader =
-        new BufferedReader( new InputStreamReader( getClass().getClassLoader().getResourceAsStream(
-          "license.txt" ) ) );
+        new BufferedReader( new FileReader( "./license/license.txt" ));
       while ( ( line = reader.readLine() ) != null ) {
         license.append( line + System.getProperty( "line.separator" ) );
       }
